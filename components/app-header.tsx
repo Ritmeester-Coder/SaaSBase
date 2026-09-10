@@ -7,13 +7,22 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserMenu } from "@/components/user-menu";
+import type { Workspace } from "@/lib/workspace/types";
+import { WorkspaceSwitcher } from "@/components/workspace-switcher";
 
 type AppHeaderProps = {
   fullName: string | null;
   email: string | undefined;
+  workspace: Workspace | null;
+  workspaces: Workspace[];
 };
 
-export function AppHeader({ fullName, email }: AppHeaderProps) {
+export function AppHeader({
+  fullName,
+  email,
+  workspace,
+  workspaces,
+}: AppHeaderProps) {
   return (
     <header className="flex h-16 shrink-0 items-center gap-3 border-b px-4">
       <SidebarTrigger />
@@ -21,7 +30,7 @@ export function AppHeader({ fullName, email }: AppHeaderProps) {
       <Separator orientation="vertical" className="h-6" />
 
       <div className="flex-1">
-        <span className="font-semibold">SaaSBase</span>
+        <WorkspaceSwitcher workspace={workspace} workspaces={workspaces} />
       </div>
 
       <ThemeToggle />

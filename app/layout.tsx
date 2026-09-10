@@ -20,6 +20,8 @@ export default async function RootLayout({
 
   const fullName = context?.profile?.full_name ?? null;
   const email = context?.user?.email;
+  const workspace = context?.workspace ?? null;
+  const workspaces = context?.workspaces ?? [];
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -30,7 +32,12 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AppShell fullName={fullName} email={email}>
+          <AppShell
+            fullName={fullName}
+            email={email}
+            workspace={workspace}
+            workspaces={workspaces}
+          >
             {children}
           </AppShell>
         </ThemeProvider>

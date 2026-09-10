@@ -26,5 +26,24 @@ export async function getCurrentContext() {
     profile,
     membership,
     workspace,
+    workspaces: memberships
+      .map((membership) => {
+        const company = Array.isArray(membership.company)
+          ? membership.company[0]
+          : membership.company
+
+        if (!company) return null
+
+        return {
+          id: company.id,
+          name: company.name,
+          slug: company.slug,
+        }
+      })
+      .filter((workspace): workspace is {
+        id: string
+        name: string
+        slug: string
+      } => workspace !== null),
   }
 }
