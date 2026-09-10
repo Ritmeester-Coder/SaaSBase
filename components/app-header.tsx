@@ -1,33 +1,19 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { Bell, LogOut } from "lucide-react";
-
-import { createClient } from "@/lib/supabase/client";
+import { Bell } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { UserMenu } from "@/components/user-menu";
 
-export function AppHeader() {
-  const router = useRouter();
-  const supabase = createClient();
+type AppHeaderProps = {
+  fullName: string | null;
+  email: string | undefined;
+};
 
-  async function handleLogout() {
-    await supabase.auth.signOut();
-
-    router.push("/login");
-    router.refresh();
-  }
-
+export function AppHeader({ fullName, email }: AppHeaderProps) {
   return (
     <header className="flex h-16 shrink-0 items-center gap-3 border-b px-4">
       <SidebarTrigger />
@@ -44,24 +30,7 @@ export function AppHeader() {
         <Bell />
       </Button>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger
-          render={
-            <Button variant="ghost" className="h-8 w-8 rounded-full p-0" />
-          }
-        >
-          <Avatar className="h-8 w-8">
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
-
-        <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuItem onClick={handleLogout}>
-            <LogOut />
-            Log out
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <UserMenu fullName={fullName} email={email} />
     </header>
   );
 }

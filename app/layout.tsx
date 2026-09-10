@@ -4,17 +4,23 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppShell } from "@/components/app-shell";
+import { getCurrentContext } from "@/lib/auth/context";
 
 export const metadata: Metadata = {
   title: "SaaSBase",
   description: "Reusable SaaS application foundation",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const context = await getCurrentContext();
+
+  const fullName = context?.profile?.full_name ?? null;
+  const email = context?.user?.email;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -24,7 +30,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AppShell>{children}</AppShell>
+          <AppShell fullName={fullName} email={email}>
+            {children}
+          </AppShell>
         </ThemeProvider>
       </body>
     </html>
