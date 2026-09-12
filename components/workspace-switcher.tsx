@@ -56,7 +56,7 @@ export function WorkspaceSwitcher({
         render={
           <Button
             variant="ghost"
-            className="h-9 gap-2 px-2"
+            className="h-9 gap-2 px-2 workspace-switcher-button"
             disabled={switching}
           />
         }

@@ -50,7 +50,12 @@ export function UserMenu({ fullName, email }: UserMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="ghost" className="h-8 w-8 rounded-full p-0" />}
+        render={
+          <Button
+            variant="ghost"
+            className="h-8 w-8 rounded-full p-0 user-menu-icon"
+          />
+        }
       >
         <Avatar className="h-8 w-8">
           <AvatarFallback>{initials}</AvatarFallback>

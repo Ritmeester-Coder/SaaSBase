@@ -27,7 +27,7 @@ export function AppHeader({
     <header className="flex h-16 shrink-0 items-center gap-3 border-b px-4">
       <SidebarTrigger />
 
-      <Separator orientation="vertical" className="h-6" />
+      <Separator orientation="vertical" className="h-6 menu-collapse-icon" />
 
       <div className="flex-1">
         <WorkspaceSwitcher workspace={workspace} workspaces={workspaces} />
@@ -35,7 +35,7 @@ export function AppHeader({
 
       <ThemeToggle />
 
-      <Button variant="ghost" size="icon">
+      <Button className="bell-icon" variant="ghost" size="icon">
         <Bell />
       </Button>
 
