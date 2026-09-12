@@ -1,8 +1,6 @@
 "use client";
-
-import { Bell } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
+import { NotificationMenu } from "@/components/notification-menu";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -35,9 +33,7 @@ export function AppHeader({
 
       <ThemeToggle />
 
-      <Button className="bell-icon" variant="ghost" size="icon">
-        <Bell />
-      </Button>
+      <NotificationMenu />
 
       <UserMenu fullName={fullName} email={email} />
     </header>
