@@ -62,7 +62,7 @@ export function NotificationMenu() {
         )}
       </PopoverTrigger>
 
-      <PopoverContent align="end" sideOffset={8} className="w-[380px] p-0">
+      <PopoverContent align="end" sideOffset={8} className="w-95 p-0">
         <div className="flex items-center justify-between border-b px-4 py-3">
           <div>
             <h3 className="font-semibold">Notifications</h3>
@@ -91,7 +91,7 @@ export function NotificationMenu() {
           )}
         </div>
 
-        <div className="max-h-[400px] overflow-y-auto">
+        <div className="max-h-100 overflow-y-auto">
           {notifications.length === 0 ? (
             <div className="flex min-h-48 flex-col items-center justify-center px-4 text-center">
               <Info className="mb-3 h-8 w-8 text-muted-foreground" />
