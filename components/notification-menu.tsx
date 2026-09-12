@@ -3,11 +3,13 @@
 import { Bell, Check, CheckCheck, Info } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useState } from "react";
 
 type Notification = {
   id: number;
@@ -42,12 +44,13 @@ const notifications: Notification[] = [
 ];
 
 export function NotificationMenu() {
+  const [open, setOpen] = useState(false);
   const unreadCount = notifications.filter(
     (notification) => notification.unread,
   ).length;
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         className="bell-icon relative inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-accent hover:text-accent-foreground"
         aria-label="Notifications"
@@ -132,15 +135,13 @@ export function NotificationMenu() {
         </div>
 
         <div className="border-t px-4 py-2.5">
-          <button
-            type="button"
-            className="w-full text-center text-sm font-medium text-muted-foreground hover:text-foreground"
-            onClick={() => {
-              console.log("View all notifications");
-            }}
+          <Link
+            href="/notifications"
+            onClick={() => setOpen(false)}
+            className="block w-full text-center text-sm font-medium text-muted-foreground hover:text-foreground"
           >
             View all notifications
-          </button>
+          </Link>
         </div>
       </PopoverContent>
     </Popover>
